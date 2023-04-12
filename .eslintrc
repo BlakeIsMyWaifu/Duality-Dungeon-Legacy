@@ -10,7 +10,8 @@
 	"plugins": [
 		"@typescript-eslint",
 		"react",
-		"react-hooks"
+		"react-hooks",
+		"simple-import-sort"
 	],
 	"ignorePatterns": [
 		"vite.config.ts"
@@ -113,6 +114,7 @@
 			{
 				"fixStyle": "inline-type-imports"
 			}
-		]
+		],
+		"simple-import-sort/imports": "warn"
 	}
 }
