@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
 import { type Slice } from './stateHelpers'
 
@@ -21,9 +21,13 @@ const combatAction: Slice<CombatStore, CombatAction> = (_set, _get) => ({
 
 type CombatStore = CombatState & CombatAction
 
-export const useCombatStore = create<CombatStore>()(persist((...a) => ({
+export const useCombatStore = create<CombatStore>()(persist(devtools((...a) => ({
 	...combatState,
 	...combatAction(...a)
 }), {
+	// Devtools settings
+	name: 'combat'
+}), {
+	// Persist Settings
 	name: 'combat'
 }))

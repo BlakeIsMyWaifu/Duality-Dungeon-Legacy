@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
 import { type Slice } from './stateHelpers'
 
@@ -21,9 +21,13 @@ const progressionAction: Slice<ProgressionStore, ProgressionAction> = (_set, _ge
 
 type ProgressionStore = ProgressionState & ProgressionAction
 
-export const useProgressionStore = create<ProgressionStore>()(persist((...a) => ({
+export const useProgressionStore = create<ProgressionStore>()(persist(devtools((...a) => ({
 	...progressionState,
 	...progressionAction(...a)
 }), {
+	// Devtools settings
+	name: 'progression'
+}), {
+	// Persist Settings
 	name: 'progression'
 }))

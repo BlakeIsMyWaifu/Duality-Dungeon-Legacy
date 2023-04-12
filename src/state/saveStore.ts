@@ -1,7 +1,7 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
-import { type Slice } from './stateHelpers'
+import { createActionName, type Slice } from './stateHelpers'
 
 interface SaveState {
 	active: boolean;
@@ -72,18 +72,29 @@ const saveState: SaveState = {
 }
 
 interface SaveAction {
-
+	newGame: () => void;
 }
 
-const saveAction: Slice<SaveStore, SaveAction> = (_set, _get) => ({
+const actionName = createActionName('save')
 
+const saveAction: Slice<SaveStore, SaveAction> = (set, _get) => ({
+	newGame: () => {
+		set({
+			...saveState,
+			active: true
+		}, ...actionName('newGame'))
+	}
 })
 
 type SaveStore = SaveState & SaveAction
 
-export const useSaveStore = create<SaveState>()(persist((...a) => ({
+export const useSaveStore = create<SaveStore>()(persist(devtools((...a) => ({
 	...saveState,
 	...saveAction(...a)
 }), {
+	// Devtools settings
+	name: 'save'
+}), {
+	// Persist Settings
 	name: 'save'
 }))

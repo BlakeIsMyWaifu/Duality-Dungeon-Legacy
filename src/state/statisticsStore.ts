@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 
 import { type Slice } from './stateHelpers'
 
@@ -21,9 +21,13 @@ const statisticsAction: Slice<StatisticsStore, StatisticsAction> = (_set, _get) 
 
 type StatisticsStore = StatisticsState & StatisticsAction
 
-export const useStatisticsStore = create<StatisticsStore>()(persist((...a) => ({
+export const useStatisticsStore = create<StatisticsStore>()(persist(devtools((...a) => ({
 	...statisticsState,
 	...statisticsAction(...a)
 }), {
+	// Devtools settings
+	name: 'statistics'
+}), {
+	// Persist Settings
 	name: 'statistics'
 }))
