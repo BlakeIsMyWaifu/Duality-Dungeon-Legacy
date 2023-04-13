@@ -1,11 +1,8 @@
-import { Text } from '@mantine/core'
-import { Link } from 'react-router-dom'
+import { Title } from '@mantine/core'
 
 const Combat = () => {
 	return (
-		<Text component={Link} to='/'>
-			Combat
-		</Text>
+		<Title>Combat</Title>
 	)
 }
 

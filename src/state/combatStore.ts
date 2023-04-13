@@ -28,6 +28,6 @@ export const useCombatStore = create<CombatStore>()(persist(devtools((...a) => (
 	// Devtools settings
 	name: 'combat'
 }), {
-	// Persist Settings
+	// Persist settings
 	name: 'combat'
 }))

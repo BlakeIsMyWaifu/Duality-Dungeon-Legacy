@@ -1,13 +1,15 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
+import { type MapNodeType, useMapStore } from './mapStore'
 import { createActionName, type Slice } from './stateHelpers'
 
 interface SaveState {
 	active: boolean;
+	gameStatus: 'map' | MapNodeType;
 	deck: string[];
-	top: CharacterState;
-	bottom: CharacterState;
+	topCharacter: CharacterState;
+	bottomCharacter: CharacterState;
 }
 
 interface CharacterState {
@@ -38,8 +40,9 @@ interface Mood extends NumberStat {
 
 const saveState: SaveState = {
 	active: false,
+	gameStatus: 'map',
 	deck: [],
-	top: {
+	topCharacter: {
 		characterInfo: {
 			name: 'raphael',
 			type: 'holy'
@@ -54,7 +57,7 @@ const saveState: SaveState = {
 			thresholds: [60, 80]
 		}
 	},
-	bottom: {
+	bottomCharacter: {
 		characterInfo: {
 			name: 'azrael',
 			type: 'demonic'
@@ -83,6 +86,8 @@ const saveAction: Slice<SaveStore, SaveAction> = (set, _get) => ({
 			...saveState,
 			active: true
 		}, ...actionName('newGame'))
+
+		useMapStore.getState().generateNodes()
 	}
 })
 
@@ -95,6 +100,6 @@ export const useSaveStore = create<SaveStore>()(persist(devtools((...a) => ({
 	// Devtools settings
 	name: 'save'
 }), {
-	// Persist Settings
+	// Persist settings
 	name: 'save'
 }))

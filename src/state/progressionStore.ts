@@ -28,6 +28,6 @@ export const useProgressionStore = create<ProgressionStore>()(persist(devtools((
 	// Devtools settings
 	name: 'progression'
 }), {
-	// Persist Settings
+	// Persist settings
 	name: 'progression'
 }))

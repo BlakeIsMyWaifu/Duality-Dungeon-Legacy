@@ -28,6 +28,6 @@ export const useStatisticsStore = create<StatisticsStore>()(persist(devtools((..
 	// Devtools settings
 	name: 'statistics'
 }), {
-	// Persist Settings
+	// Persist settings
 	name: 'statistics'
 }))

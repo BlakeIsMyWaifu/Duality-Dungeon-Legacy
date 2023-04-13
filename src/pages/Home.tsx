@@ -23,8 +23,8 @@ const Home = () => {
 				</Button>
 
 				<Button onClick={() => {
-					navigate('/combat')
 					newGame()
+					navigate('/map')
 				}}>
 					New Game
 				</Button>
