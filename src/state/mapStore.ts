@@ -16,10 +16,12 @@ interface MapNode {
 	tier: number;
 	/** Key is the tier and the value is an array of ids */
 	childrenId: Record<number, number[]>;
-	status: 'available' | 'locked' | 'completed' | 'active';
+	status: NodeStatus;
 	type: MapNodeType;
 	data: unknown;
 }
+
+export type NodeStatus = 'available' | 'locked' | 'completed' | 'active';
 
 interface CombatNode extends MapNode {
 	type: 'combat';
@@ -73,7 +75,7 @@ interface MapAction {
 	 * Does not affect other nodes around it.
 	 * For internal use only.
 	 */
-	changeNodeStatus: (nodeTier: number, nodeId: number, status: MapNode['status']) => void;
+	changeNodeStatus: (nodeTier: number, nodeId: number, status: NodeStatus) => void;
 }
 
 const actionName = createActionName('map')

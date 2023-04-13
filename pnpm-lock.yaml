@@ -16,6 +16,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-drawline:
+    specifier: ^1.1.0
+    version: 1.1.0(react-dom@18.2.0)(react@18.2.0)
   react-router-dom:
     specifier: ^6.10.0
     version: 6.10.0(react-dom@18.2.0)(react@18.2.0)
@@ -2368,6 +2371,16 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-drawline@1.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-4BVFcVjWeF3i11kzP7u1dkmcEZk94diTfdDMFYA9WOD102KfrQBybVb/A1YlGui4u+hnHfkVDDQnHHEMsTFT5Q==}
+    peerDependencies:
+      react: ^17.0.2
+      react-dom: ^17.0.2
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-is@16.13.1:
